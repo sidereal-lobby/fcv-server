@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/echo-server.js",
+    "format": "prettier --write src/*.js",
+    "lint": "eslint ./src --ext .js",
+    "fix": "npm run format && npm run lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Keisuke Kuzukawa",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.2.2"
+  },
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.4.1"
+  },
+  "description": "websocket echo server."
+}

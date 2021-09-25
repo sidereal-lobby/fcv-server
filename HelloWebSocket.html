@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket Sample</title>
+<style>
+body {
+  background-color: #000;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+  <h1>WebSocket Sample</h1>
+  check out debugger.
+  <script>
+    let ws = new WebSocket('ws://localhost:8080/');
+    ws.onopen = (e) => {
+      console.log('connected to server.');
+      ws.send('hello😊');
+    };
+    ws.onmessage = (e) => { 
+      //e.data.text().then(text => console.log(text));
+      console.log(`received : ${e.data}`);
+    }
+    ws.onclose = (e) => { console.log('disconnected.')};
+  </script>
+</body>
+</html>
