@@ -1,0 +1,67 @@
+textarea, input {
+  width: 100%;
+  font-family: consolas;
+  background: #212529;
+  color: #f47300; }
+
+body {
+  background: #000000;
+  color: #f47300; }
+
+svg {
+  width: 200px; }
+
+h1, h2, h3 {
+  font-family: "Michroma", sans-serif;
+  padding-top: 8px;
+  padding-bottom: 8px; }
+
+hr {
+  padding-top: 8px;
+  border-bottom: 8px solid #f47300; }
+
+a {
+  color: #f47300;
+  text-decoration: underline; }
+
+a:hover {
+  color: #FF0000; }
+
+::selection {
+  background: #FF0000; }
+
+.btn {
+  font-family: "Michroma", sans-serif;
+  background: linear-gradient(168deg, #ff0000, #f47300, #76c500);
+  background-size: 600% 600%;
+  -webkit-animation: cta 4s ease infinite;
+  -moz-animation: cta 4s ease infinite;
+  animation: cta 4s ease infinite; }
+
+.btn:hover {
+  color: #FF0000;
+  letter-spacing: 4px; }
+
+@-webkit-keyframes cta {
+  0% {
+    background-position: 0% 72%; }
+  50% {
+    background-position: 100% 29%; }
+  100% {
+    background-position: 0% 72%; } }
+@-moz-keyframes cta {
+  0% {
+    background-position: 0% 72%; }
+  50% {
+    background-position: 100% 29%; }
+  100% {
+    background-position: 0% 72%; } }
+@keyframes cta {
+  0% {
+    background-position: 0% 72%; }
+  50% {
+    background-position: 100% 29%; }
+  100% {
+    background-position: 0% 72%; } }
+
+/*# sourceMappingURL=style.css.map */

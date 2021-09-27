@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APE SHALL NOT KILL APE</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h1>SiLo</h1>
+      <div id="msg" class="section">
+        <h1>MSG</h1>
+        <input class="mb-1" id="msg_content"></input>
+        <button class="btn btn-block" id="msg_send">Send</button>
+      </div>
+      <div id="title" class="section">
+        <h1>title (via LUA)</h1>
+        <input class="mb-1" id="title_content"></input>
+        <button class="btn btn-block" id="title_send">Send</button>
+      </div>
+      <div id="lua" class="section">
+        <h1>LUA</h1>
+        <textarea class="mb-1" id="lua_content"></textarea>
+        <button class="btn btn-block" id="lua_send">Send</button>
+      </div>
+      <div id="sc" class="section">
+        <h1>SC</h1>
+        <textarea class="mb-1" id="sc_content"></textarea>
+        <button class="btn btn-block" id="sc_send">Send</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    let ws = new WebSocket('ws://localhost:8080/');
+
+    const byId = id => document.getElementById(id);
+
+    const setTitle = (title) => {
+      ws.send(`LUA\ngraphics.title = "${title}"`);
+    }
+
+    ws.onopen = (e) => {
+      console.log('connected to server.');
+      //ws.send('hello😊');
+      //ws.send('hello and welcome');
+      ws.send(`MSG\nDON'T\nLOOK\nIN THE CLOSET!`);
+    };
+
+    byId('msg_send').onclick = () => {
+      ws.send(`MSG\n${byId('msg_content').value}`);
+    };
+    byId('title_send').onclick = () => {
+      setTitle(byId('title_content').value);
+    };
+    byId('lua_send').onclick = () => {
+      ws.send(`LUA\n${byId('lua_content').value}`);
+    };
+    byId('sc_send').onclick = () => {
+      ws.send(`SC\n${byId('sc_content').value}`);
+    };
+
+    ws.onmessage = (e) => { 
+      //e.data.text().then(text => console.log(text));
+      console.log(`received : ${e.data}`);
+    }
+    ws.onclose = (e) => { console.log('disconnected.')};
+  </script>
+</body>
+</html>
