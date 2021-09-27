@@ -49,9 +49,14 @@ wss.on("connection", function connection(ws, request, client) {
     //     - something.txt
     // or do something reasonable like headers or wahtever
     let i = 0;
+    //const msg = `did someone say "${message.toString()}"? neat!`;
+    const msg = message.toString();
+
+    console.log(`sending message to clients: "${msg}"`);
     wss.clients.forEach((client) => { 
       //console.log(`client #${i}: `, Object.keys(client));
-      client.send(`hi client ${++i}! did you say "${message.toString()}"? neat!`);
+      //client.send(`hi client ${++i}! ${msg}`);
+      client.send(msg);
     });
     console.log(`# clients: ` + i);
     //console.log(`clients: `, );
