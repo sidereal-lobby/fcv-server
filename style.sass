@@ -1,0 +1,75 @@
+$black: #000000
+$grey: #212529
+$red: #FF0000
+$gold: #f47300
+
+$display: 'Michroma', sans-serif
+$body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif
+
+textarea, input
+  width: 100%
+  font-family: consolas
+  background: $grey
+  color: $gold
+
+body
+  background: $black
+  color: $gold
+
+svg
+  width: 200px
+
+h1, h2, h3
+  font-family: $display
+  padding-top: 8px
+  padding-bottom: 8px
+
+hr
+  padding-top: 8px
+  border-bottom: 8px solid $gold
+
+a
+  color: $gold
+  text-decoration: underline
+
+a:hover
+  color: $red
+
+::selection
+  background: $red
+
+.btn
+  font-family: $display
+  background: linear-gradient(168deg, #ff0000, #f47300, #76c500)
+  background-size: 600% 600%
+  -webkit-animation: cta 4s ease infinite
+  -moz-animation: cta 4s ease infinite
+  animation: cta 4s ease infinite
+
+.btn:hover
+  color: $red
+  letter-spacing: 4px
+
+@-webkit-keyframes cta
+    0%
+      background-position: 0% 72%
+    50%
+      background-position: 100% 29%
+    100%
+      background-position: 0% 72%
+
+@-moz-keyframes cta
+    0%
+      background-position: 0% 72%
+    50%
+      background-position: 100% 29%
+    100%
+      background-position: 0% 72%
+
+@keyframes cta
+    0%
+      background-position: 0% 72%
+    50%
+      background-position: 100% 29%
+    100%
+      background-position: 0% 72%
