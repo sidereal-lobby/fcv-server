@@ -1,0 +1,6 @@
+{
+  "sc-stonks": "/src/fcv/stonks/outbox.sc",
+  "sc-sparkle": "/src/fcv/sparkle/outbox.sc",
+  "lua-stonks": "/src/fcv/stonks/outbox.lua",
+  "lua-sparkle": "/src/fcv/sparkle/outbox.lua"
+}
