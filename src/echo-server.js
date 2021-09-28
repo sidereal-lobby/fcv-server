@@ -1,4 +1,55 @@
-import { WebSocketServer } from "ws";
+const { readFile, open, utimes } = require("fs/promises");
+const watch = require("node-watch");
+const { WebSocketServer } = require("ws");
+
+const touch = async (path) => {
+  const time = new Date();
+  try {
+    await utimes(path, time, time);
+  } catch (err) {
+    await close(await open(path, 'w'));
+  }
+};
+
+let config;
+try {
+  config = require('./config.json')
+} catch(e) {
+  console.error(`couldn't find config.json in ${__dirname}`);
+  console.error(`please see default-config.json for example`);
+  process.exit(1);
+}
+
+// setup watches based on config (or explode when invalid)
+
+let setupErrors = 0;
+["sc-stonks","sc-sparkle","lua-stonks","lua-sparkle"].forEach(async file => {
+  const path = config[file];
+  if (!path || typeof(path) !== 'string') {
+    console.error(`invalid path in config.json for ${file}`);
+    console.error(`please see default-config.json for example`);
+    setupErrors++;
+    return;
+  }
+
+  try {
+    await touch(path);
+    const cmd = file.split('-')[0].toUpperCase();
+    watch(path, {}, async (evt, name) => {
+      const contents = await readFile(name);
+      console.log(`sending ${cmd} command with changes to ${name}`);
+      blastClients(`${cmd}\n${contents}`);
+    });
+  } catch (e) {
+    console.error(`could not watch path for ${file}: ${path}`)
+    console.error(e);
+    setupErrors++;
+  }
+});
+
+if (setupErrors) {
+  process.exit(1);
+}
 
 let id = 0;
 const connMap = new Map();
