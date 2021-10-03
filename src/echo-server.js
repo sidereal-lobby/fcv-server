@@ -1,4 +1,4 @@
-const { readFile, open, utimes } = require("fs/promises");
+const { readFile, open, utimes, close } = require("fs/promises");
 const watch = require("node-watch");
 const { WebSocketServer } = require("ws");
 
