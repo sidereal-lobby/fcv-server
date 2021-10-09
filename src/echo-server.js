@@ -78,7 +78,10 @@ wss.on("connection", function connection(ws, request, client) {
   //console.log(`#args: ${arguments.length}`);
 
   // ws object is for a specific client
+  // 2021-10-08 - disable blast on WS message
   ws.on("message", blastClients);
+
+
     //function incoming(message) {
     //blastClients(message);
     //console.log("oh hi: %s", message);
