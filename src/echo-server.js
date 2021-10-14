@@ -79,7 +79,8 @@ wss.on("connection", function connection(ws, request, client) {
 
   // ws object is for a specific client
   // 2021-10-08 - disable blast on WS message
-  //ßws.on("message", blastClients);
+  // 2021-10-14 - turning back on so we can do grid things
+  ws.on("message", blastClients);
 
 
     //function incoming(message) {
